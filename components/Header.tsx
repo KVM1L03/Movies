@@ -1,40 +1,25 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const Header = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // Logika przełączania trybu jasnego/ciemnego
-  };
-
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.titleText}>Your Netflix Clone</Text>
-      <TouchableOpacity style={styles.darkModeToggle} onPress={toggleDarkMode}>
-        <Ionicons
-          name={darkMode ? "md-sunny" : "md-moon"}
-          size={24}
-          color={darkMode ? "white" : "black"}
-        />
-      </TouchableOpacity>
+      <Text style={styles.titleText}>urMovie.com</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: 16,
   },
   titleText: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 40,
     alignSelf: "center",
+    fontFamily: "Handjet-Bold",
+    color: "#8527f5d6",
   },
   darkModeToggle: {
     padding: 5,

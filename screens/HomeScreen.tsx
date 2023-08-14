@@ -4,18 +4,15 @@ import Header from "../components/Header";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Divider, Searchbar } from "react-native-paper";
 import CardComp from "../components/CardComp";
-import { useFonts } from "expo-font";
 import { useSearchMoviesQuery, useGetPopularMoviesQuery } from "../api";
 import { useNavigation } from "@react-navigation/native";
+import Carousel from "react-native-snap-carousel";
+import { Ionicons } from "@expo/vector-icons";
 
 const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { data, error, isLoading } = useGetPopularMoviesQuery();
   const { data: searchData } = useSearchMoviesQuery(searchQuery);
-  const [fontsLoaded] = useFonts({
-    "Handjet-Bold": require("../assets/fonts/Handjet-Bold.ttf"),
-    "Handjet-Regular": require("../assets/fonts/Handjet-Regular.ttf"),
-  });
   const onChangeSearch = (query: string) => setSearchQuery(query);
   const navigation = useNavigation();
 
@@ -24,7 +21,7 @@ const HomeScreen = () => {
   }
 
   if (error) {
-    return <Text>Error </Text>;
+    return <Text>Error :( </Text>;
   }
 
   return (
@@ -33,20 +30,25 @@ const HomeScreen = () => {
       <Searchbar
         style={styles.searchBar}
         placeholder="Search"
+        inputStyle={{ fontFamily: "Handjet-Regular", fontSize: 20 }}
         value={searchQuery}
         onChangeText={onChangeSearch}
       />
-
       {searchQuery === "" ? (
         <View>
-          <Text style={styles.text}> TRENDING </Text>
+          <Text style={styles.text}>
+            TRENDING WORLDWIDE <Ionicons name="earth" size={30} color="black" />
+          </Text>
           <Divider />
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
+          <Carousel
+            firstItem={1}
+            inactiveSlideOpacity={0.6}
+            sliderWidth={400}
+            itemWidth={200}
+            slideStyle={{ display: "flex", alignItems: "center" }}
             data={data.results}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item }: { item: any }) => (
               <CardComp
                 title={item.title}
                 image={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
@@ -54,16 +56,19 @@ const HomeScreen = () => {
                 voteCount={item.vote_count}
                 navigation={navigation}
                 overview={item.overview}
-                country={item.production_countries}
                 genre_ids={item.genre_ids}
-                genreNames={item.genreNames} // Make sure you pass the actual genreNames array
+                genreNames={item.genreNames}
+                production_countries={item.production_countries}
+                id={item.id}
               />
             )}
           />
         </View>
       ) : (
         <View>
-          <Text style={styles.text}>Search Results</Text>
+          <Text style={styles.text}>
+            Search Results <Ionicons name="search" size={24} color="#212121" />
+          </Text>
           <Divider />
           <FlatList
             horizontal
@@ -78,9 +83,10 @@ const HomeScreen = () => {
                 voteCount={item.vote_count}
                 navigation={navigation}
                 overview={item.overview}
-                country={item.production_countries}
                 genre_ids={item.genre_ids}
-                genreNames={item.genreNames} 
+                genreNames={item.genreNames}
+                production_countries={item.production_countries}
+                id={item.id}
               />
             )}
           />
@@ -97,10 +103,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 35,
-    fontWeight: "500",
     marginVertical: 10,
     alignSelf: "center",
     fontFamily: "Handjet-Bold",
+    color: "#212121",
   },
 });
 
