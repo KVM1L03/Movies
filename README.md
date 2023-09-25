@@ -1,13 +1,20 @@
-# React Native Movie App
+# urMovie.com
+## React Native movie app
+![ezgif com-optimize](https://github.com/KVM1L03/Movies/assets/74794656/f6eeb947-b4e3-4b70-9248-93f303626fbc)
 
-##
+# Made using:
+* Typescript
+* Redux Toolkit 
+* RTK Query
+* react-navigation
+* RN Paper
+* Animated from react-native
+* The Movie Database (TMDB) API
 
-## Made with Typescript, Redux toolkit, RTK Query, react-navigation, RN Paper 
+# Demo:
+https://github.com/KVM1L03/Movies/assets/74794656/405de568-0632-44de-90eb-095277e1e2a0
 
-Demo:
 
-
-https://github.com/KVM1L03/Movies/assets/74794656/6f7dcbf4-cc2d-4295-bb51-b7c50385a5b1
 
 
 
