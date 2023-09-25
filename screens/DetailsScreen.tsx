@@ -6,7 +6,7 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { useGetGenresQuery, useGetMovieDetailsQuery } from "../api";
 import { Button } from "react-native-paper";
@@ -14,7 +14,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-navigation";
 import { Ionicons } from "@expo/vector-icons";
 
-var { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
+
+const BACKDROP_HEIGHT = height * 0.65;
 
 type DetailsScreenProps = {
   route: RouteProp<ParamList, "Details">;
@@ -103,8 +105,13 @@ const DetailsScreen = () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <Image source={{ uri: image }} style={styles.image} />
         <LinearGradient
-          colors={["rgba(0, 0, 0, 0.6)", "rgba(0, 0, 0, 0)"]}
-          style={styles.gradient}
+          colors={["rgba(0, 0, 0, 0.1)", "#121212"]}
+          style={{
+            height: BACKDROP_HEIGHT,
+            width,
+            position: "absolute",
+            bottom: 0,
+          }}
         />
         <Text style={styles.text_head}>{title}</Text>
         <Text style={styles.text_content}>{overview}</Text>
@@ -114,6 +121,7 @@ const DetailsScreen = () => {
               alignSelf: "center",
               fontFamily: "Handjet-Regular",
               fontSize: 20,
+              color:'white'
             }}
           >
             Producted in:
@@ -124,10 +132,11 @@ const DetailsScreen = () => {
                 alignSelf: "center",
                 fontFamily: "Handjet-Bold",
                 fontSize: 20,
+                color:'white'
               }}
               key={index}
             >
-              <Ionicons name="earth" size={16} color="black" /> {country.name}
+              <Ionicons name="earth" size={16} color='white' /> {country.name}
             </Text>
           ))}
         </View>
@@ -146,6 +155,7 @@ const DetailsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#121212"
   },
   scrollViewContent: {
     paddingHorizontal: 10,
@@ -157,22 +167,18 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 0,
   },
-  gradient: {
-    position: "absolute",
-    width,
-    height,
-  },
   text_head: {
     fontSize: 30,
     fontWeight: "500",
     marginVertical: 10,
     alignSelf: "center",
     fontFamily: "Handjet-Bold",
-    color: "#212121",
+    color: "#8527f5d6",
   },
   text_content: {
     fontSize: 20,
     marginVertical: 10,
+    color:'white',
     fontFamily: "Handjet-Regular",
   },
   button_container: {
@@ -188,6 +194,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     marginRight: 8,
+    
   },
 });
 

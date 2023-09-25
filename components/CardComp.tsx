@@ -50,6 +50,7 @@ const CardComp = (props: Props) => {
                 genreNames: props.genreNames,
                 production_countries: props.production_countries,
                 id: props.id,
+                
               },
             })
           }
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginHorizontal: 10,
     marginVertical: 10,
+    backgroundColor:'black'
   },
   titleContainer: {
     height: 80,
@@ -76,13 +78,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Handjet-Bold",
     fontSize: 20,
-    color: "#212121",
+    color: "white",
   },
   cardContent: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 10,
+    
   },
   coverImage: {
     width: "80%",
@@ -97,12 +100,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 2,
     fontFamily: "Handjet-Regular",
+    color: "white",
   },
   voteCount: {
     textAlign: "center",
     fontSize: 20,
     marginVertical: 2,
     fontFamily: "Handjet-Regular",
+    color: "white",
   },
 });
 
